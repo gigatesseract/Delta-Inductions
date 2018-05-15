@@ -35,6 +35,7 @@ div input{
   color: black;
   font-weight: bold;
   margin-left: 2%;
+  background-color: turquoise;
 
 
 
@@ -101,8 +102,15 @@ div input{
     color: black;
   grid-area: 2 / 16 / 3 / 17;
 
+
 }
 .mentee{
   background-color: inherit;
   grid-area: 2/1/4/5;
+}
+input{
+  background-color: orange;
+}
+#text{
+  background-color: white;
 }
