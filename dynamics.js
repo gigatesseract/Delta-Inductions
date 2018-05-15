@@ -1,7 +1,8 @@
-var mentees = []; //mentees and rating array are for keeping track of tree configuration for sorting
-var objarray = [];
+var mentees = []; //mentees and rating array are for keeping track of tree configuration for sorting. I did this before knowing about children[]. so kept it.
+var objarray = []; //Stores the important details in objects, for saving and retrieving
 var rating = [];
-var comm = [];
+    //Stores the comments, so as to hide every other comment box than the one thats pressed.
+  //to store input tags of mentee names, so as to lock them when save button is clicked.
 var j = 0,
   i;
 
@@ -94,13 +95,19 @@ function add(name, ratings, lockstatus, comments) { //START OF ADD FUNCTION
   comment.placeholder = "Enter your comments here";
   comment.className = "comments";
   comment.value = comments;
-  comm.push(comment);
   // comment.id = "comments";
 
   var editbutton = document.createElement('input'); //EDITBUTTON PROPERTIES
   editbutton.type = "button";
   editbutton.value = "Edit";
   editbutton.className = "edit";
+
+  var cpara = document.createElement('p');
+  if(comments=="")
+  cpara.textContent = "No comments here.";
+  else cpara.textContent = comments;
+  cpara.className = "cpara";
+  cpara.style.display= "none";
 
 
 
@@ -128,18 +135,17 @@ function add(name, ratings, lockstatus, comments) { //START OF ADD FUNCTION
 
 
 
-  var status = document.createElement('input');
-  status.type = "radio";
-  status.style.display = "none";
-  status.name = "status";
-  status.className = "status";
-  status.checked = true;
+ var menname = document.createElement('p');
+ menname.className = "menteename";
+ menname.textContent = name;
+ menname.style.display = "none";
+
+
 
 
 
   div.appendChild(node); //APPENDING CHILDREN TO LIST
   div.appendChild(para);
-  // div.appendChild(status);
 
   for (i = 0; i < 5; i++) { //Radio buttons and labels
     div.appendChild(radio[i]);
@@ -149,52 +155,61 @@ function add(name, ratings, lockstatus, comments) { //START OF ADD FUNCTION
 
 
   div.appendChild(deletebutton);
-  div.appendChild(lockbutton);
   div.appendChild(editbutton);
+  div.appendChild(menname);
 
-  list.appendChild(div);
   div.appendChild(comment);
-  mentees.push(div); //pushing the div to metees for sorting
+  div.appendChild(cpara);
+  mentees.push(div);
+  list.appendChild(div);                                                            //pushing the div to metees for sorting
 
 
 
 
-  deletebutton.onclick = function() { //Delete function
+  deletebutton.onclick = function() {                                                     //Delete function
     var index = mentees.indexOf(div);
     div.remove();
     mentees.splice(index, 1);
     rating.splice(index, 1);
     objarray.splice(index, 1);
-    comm.splice(index,1);
     console.log(objarray.length);
 
   }
 
-  function lock() { //LOCK BUTTON onclick
-    comment.disabled = true;
+  // function lock() {                  //LOCK BUTTON onclick
+  //   comment.disabled = true;
+  //   for (m = 0; m < 5; m++)
+  //     radio[m].disabled = true;
+  //   node.disabled = true;
+  //   myobj.lockstatus = true;
+  //   myobj.comments = comment.value;
+  //   myobj.name = node.value;
+  // }
+
+  if(lockstatus==true)
+  {
+    menname.style.display = "block";
+    node.style.display = "none";
     for (m = 0; m < 5; m++)
-      radio[m].disabled = true;
-    node.disabled = true;
-    myobj.lockstatus = true;
-    myobj.comments = comment.value;
-    myobj.name = node.value;
+     radio[m].disabled = true;
+     comment.disabled = true;
+
+
   }
 
   function edit() {
     comment.disabled = false;
     for (m = 0; m < 5; m++)
       radio[m].disabled = false;
-    node.disabled = false;
+    node.style.display = "block";
     myobj.lockstatus = false;
+    menname.style.display = "none";
+    cpara.style.display = "none";
 
   }
-  if (lockstatus == true) lock();
-  else edit();
+
 
   editbutton.addEventListener("click", edit);
-  lockbutton.addEventListener("click", lock);
-
-
 
 
   myobj.name = node.value; //EDITING OBJECT PARAMETERS
@@ -202,24 +217,14 @@ function add(name, ratings, lockstatus, comments) { //START OF ADD FUNCTION
   var index = mentees.indexOf(div);
   objarray[index] = myobj;
 
-  // div.tabIndex = "0";
-
-  // div.onfocus = function(){
-  //   comment.style.display = "block";
-  // }
-  //
-  // div.onblur = function(){
-  //   comment.style.display = "none";
-  // }
-
-  div.tabIndex = "0";
-  status.tabIndex = "0";
 
   function expandcollapse(){
-
+      if(myobj.lockstatus==true)
       div.style.marginBottom = "1%";
       div.style.gridTemplateRows = "1fr 0.5fr 0.5fr 1fr 1fr 1fr 1fr 1fr";
-      comment.style.display = "block";
+      if(myobj.lockstatus==true)
+      cpara.style.display = "block";
+      else comment.style.display = "block";
 
 
     for(i=0;i<mentees.length;i++)
@@ -229,7 +234,8 @@ function add(name, ratings, lockstatus, comments) { //START OF ADD FUNCTION
       //console.log(i);
       mentees[i].style.marginBottom = "1%";
       mentees[i].style.gridTemplateRows = "1fr 0.5fr 0.5fr 1fr";
-      comm[i].style.display = "none";
+      mentees[i].children[15].style.display = "none";
+        mentees[i].children[16].style.display = "none";
     }
   }
 }
@@ -237,12 +243,38 @@ function add(name, ratings, lockstatus, comments) { //START OF ADD FUNCTION
 
 
   div.addEventListener("click", expandcollapse);
-   div.appendChild(status);
 
 } //END OF ADD FUNCTION
 
 
-function save() { //SAVE FUNCTION
+function save() {
+                                              //SAVE FUNCTION
+  for(i=0;i<mentees.length;i++)
+  {
+    mentees[i].children[16].value = mentees[i].children[15].value;
+    mentees[i].children[14].value = mentees[i].children[0].value;
+      mentees[i].style.gridTemplateRows = "1fr 0.5fr 0.5fr 1fr";
+  }
+  for(i=0;i<objarray.length;i++)
+  {
+    objarray[i].lockstatus = true;
+    objarray[i].name = mentees[i].children[0].value;
+    objarray[i].comments = mentees[i].children[15].value;
+  }
+  for(i=0;i<mentees.length;i++)
+  {
+    mentees[i].children[14].style.display = "block";
+
+    mentees[i].children[15].style.display = "none";
+    mentees[i].children[0].style.display = "none";
+    for(n=0;n<mentees[i].children.length;n++)
+  console.log(mentees[i].children[n]);
+     for(n=0;n<5;n++)
+     {
+       mentees[i].children[2+ 2*n].disabled = true;
+
+     }
+  }
   localStorage.setItem("flag", "1");
   var obj2 = [];
 
@@ -250,12 +282,6 @@ function save() { //SAVE FUNCTION
     obj2[i] = objarray[i];
     JSON.stringify(obj2[i]);
     localStorage.setItem(i, JSON.stringify(obj2[i]));
-
-
-
-
-
-
 
   }
   localStorage.setItem("length", objarray.length);
@@ -281,9 +307,7 @@ function sort() {
         var temp = objarray[i];
         objarray[i] = objarray[k];
         objarray[k] = temp;
-        var temp = comm[i];
-        comm[i] = comm[k];
-        comm[k] = temp;
+
       }
     }
   }
