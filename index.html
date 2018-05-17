@@ -4,21 +4,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Styles.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" media="screen and (max-device-width: 900px) " href="/mobiles.css">
   <title>Mentee Management</title>
 </head>
 
 <body id="hi">
   <h1>Mentee Management for Deep bro</h1>
   <p>Enter name of mentee:- </p>
-  <input type="text" name="textbox" placeholder="Enter name here" id="text">
-  <input type="button" name="Add" value="Add" id="add" onclick = "add()">
+  <input type="text" name="textbox" placeholder="Enter name" id="text" class = "textbox">
+  <p display = "hidden"><br><br></p>
+  <input type="button" name="Add" value="Add" id="add">
+
   <input type="button" name="sort" value="Sort by rating" id="sort" onclick="sort()">
   <input type="button" name="save" value="Save contents" id="save" onclick="save()">
   <ul id="list">
 
   </ul>
-  <script type="text/javascript" src="/dynamics.js">
+  <script type="text/javascript" src="/dfordynamics.js">
   </script>
 </body>
 </html>

@@ -1,0 +1,191 @@
+.textbox{
+  width: 100px;
+
+
+}
+p{
+  display: inline;
+}
+
+body{
+  background-color: aqua;
+  margin: 5px;
+
+
+}
+div{
+  width: 700px;
+  height: 100px;
+  position: relative;
+  right: 30px;
+  margin: 20px;
+  border: 2px solid black;
+
+
+}
+.comments{
+
+  background-color: inherit;
+  border: 1px dotted;
+  display: none;
+  position: absolute;
+  top: 80px;
+
+  height: 25px;
+  width: 300px;
+  overflow: scroll;
+}
+/* div input{
+  color: black;
+  font-weight: bold;
+  margin-left: 2%;
+  background-color: turquoise; */
+
+
+
+/* div input:focus{
+
+} */
+.radio0{
+  position: absolute;
+  left: 400px;
+  top: 30px;
+
+}
+.radio1{
+  position: absolute;
+  left: 450px;
+  top: 30px;
+}
+.radio2{
+  position: absolute;
+  left: 500px;
+  top: 30px;
+}
+.radio3{
+  position: absolute;
+  left: 550px;
+  top: 30px;
+}
+.radio4{
+  position: absolute;
+  left: 600px;
+  top: 30px;
+
+}
+.label0{
+  position: absolute;
+  left: 425px;
+  top: 30px;
+}
+.label1{
+  position: absolute;
+  left: 475px;
+  top: 30px;
+
+
+}
+.label2{
+  position: absolute;
+  left: 525px;
+  top: 30px;
+}
+.label3{
+  position: absolute;
+  left: 575px;
+  top: 30px;
+
+}
+.label4{
+  position: absolute;
+left: 625px;
+top: 30px;
+
+
+}
+
+.rating{
+
+  text-align: center;
+  position: absolute;
+  right: 150px;
+  top: 0;
+  margin: 5px;
+
+
+
+}
+
+.delete{
+
+  display: none;
+position: absolute;
+  left: 380px;
+  width: 55px;
+  bottom: 5px;
+
+}
+
+.edit{
+    color: black;
+    display: none;
+    position: absolute;
+    left: 300px;
+    bottom: 5px;
+
+    width: 50px;
+
+
+
+
+
+}
+.mentee{
+
+background-color: inherit;
+position: absolute;
+ left: 60px;
+width: 200px;
+top: 15px;
+height: 50px;
+
+line-height: 50px;
+
+
+}
+input{
+  background-color: orange;
+}
+#text{
+  background-color: white;
+}
+.menteename{
+  background-color: inherit;
+  position: absolute;
+   left: 80px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+
+
+
+
+}
+.cpara{
+  background-color: inherit;
+
+  display: none;
+  position: absolute;
+  bottom: 30px;
+  left: 10px;
+
+}
+.toggle{
+  position: relative;
+  width: 150px;
+  color: white;
+  top: 60px;
+left: 450px;
+
+}
